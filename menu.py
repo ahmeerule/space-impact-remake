@@ -1,11 +1,11 @@
 import pygame
 import button as b
-import game as g
+import game 
 pygame.init()
 screen = pygame.display.set_mode((1000,600))
 
 
-def main():
+def main_menu():
     pygame.display.set_caption("Main Menu")
     #Title
     test_font = pygame.font.Font(None,100)
@@ -44,14 +44,14 @@ def main():
                 pygame.QUIT()
                 exit()
             if pbutton.checkforinput():
-                g.game()
+                game.game()
             if qbutton.checkforinput():
                 pygame.QUIT()
             if cbutton.checkforinput():
                 credit()
 
-        bgx += 0.5
-        second_bgx +=0.5
+        bgx += 0.1
+        second_bgx +=0.1
 
         if bgx > -1:
             bgx = -1000
@@ -94,11 +94,11 @@ def credit():
                 pygame.QUIT()
                 exit()
             if bbutton.checkforinput():
-                main()
+                main_menu()
             
 
-        bgx += 0.5
-        second_bgx +=0.5
+        bgx += 0.1
+        second_bgx +=0.1
 
         if bgx > -1:
             bgx = -1000
@@ -112,3 +112,4 @@ def credit():
         pygame.display.update()
 
 
+main_menu()

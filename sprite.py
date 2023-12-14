@@ -1,16 +1,19 @@
 import sys, pygame
+from typing import Any
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("assets/player.png")
-        self.resize =  pygame.transform.scale(self.image,(100,60))
+        self.image = pygame.image.load("assets/player1.png")
+        self.resize =  pygame.transform.scale(self.image,(100,50))
         self.rect = self.resize.get_rect()
-        self.rect.centerx = 100
+        self.rect.centerx = 75
         self.rect.centery = 300
-        self.speedx = 0
         self.speedy = 0
+        self.speedx= 0
+    
+
     def update(self):
         self.speedx = 0
         self.speedy = 0
@@ -22,6 +25,26 @@ class Player(pygame.sprite.Sprite):
         if key_state[pygame.K_UP]:
             self.speedy = - 4
         if key_state[pygame.K_DOWN]:
-            self.speedy = + 4        
+            self.speedy = + 4 
         self.rect.x += self.speedx
-        self.rect.y += self.speedy
+        self.rect.y += self.speedy      
+        
+    def create_bullet(self):
+        pass
+
+        
+
+  
+class Bullets(pygame.sprite.Sprite):
+    def __init__(self,x,y):
+        pygame.sprite.Sprite.__init__(self)
+        self.speed = 10
+        self.image = pygame.image.load("assets/bullet.png").convert_alpha()
+        self.w = self.image.get_width()
+        self.h = self.image.get_height()
+        self.resize = pygame.transform.scale(self.image,(self.w*0.2,self.h*0.2))
+        self.rect = self.resize.get_rect()
+        self.rect.center = (x,y)
+        
+    def update(self):
+        self.rect.centerx += 10

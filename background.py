@@ -5,18 +5,7 @@ pygame.init()
 screen = pygame.display.set_mode((1000,600))
 test_font = pygame.font.Font(None,50)
 
-class Background():
-    def __init__(self, image , x_pos, y_pos):
-        self.image = image
-        self.x_pos = x_pos
-        self.y_pos = y_pos
-        self.rect = self.image.get_rect(topleft=(self.x_pos,self.y_pos))
 
-         
-    def update(self):
-
-        screen.blit(self.image,self.rect)
-bgx = -1000
 bgy = 0
 second_bgx = 0
 
@@ -37,7 +26,7 @@ while True:
             exit()
     bgx += 0.5
     second_bgx +=0.5
-    
+
     if bgx > -1:
         bgx = -1000
     if second_bgx > 1000:

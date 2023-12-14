@@ -1,6 +1,7 @@
 import sprite as s
-import menu as m
+
 import sys, pygame
+
 pygame.init()
 screen = pygame.display.set_mode((1000,600))
 
@@ -23,9 +24,14 @@ def game():
 
     #player sprite
     all_sprite = pygame.sprite.Group()
+    bullet_group = pygame.sprite.Group()
     player = s.Player()
-    all_sprite.add(player)
     
+    all_sprite.add(player)
+    #controls
+    shoot = False
+    
+    #bullet = s.Bullets(s.Player.rect.centerx,s.Player.rect.centery)
     
     
     while True:
@@ -36,10 +42,8 @@ def game():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 exit()
-        all_sprite.update()
         
-    
-
+        
         #background logic
         bgx += 0.5
         second_bgx +=0.5
@@ -49,15 +53,31 @@ def game():
         if second_bgx > 1000:
             second_bgx = 0
 
+        
         # display 
-     
+        if shoot:
+            bullet = s.Bullets(player.rect.centerx,player.rect.centery)
+            bullet_group.add(bullet)
+             
+        if pygame.key.get_pressed()[pygame.K_SPACE]:
+                shoot = True
+                
+        
         screen.blit(bg,(bgx,0))
         screen.blit(second_bg,(second_bgx,0))
-        # constanly update gameboard        
+        
+        bullet_group.draw(screen)
+        bullet_group.update()
+        all_sprite.draw(screen)
+        all_sprite.update()
+        
+        # constanly update gameboard 
+       
         pygame.display.update()
     
         clock.tick(60)
 
 
 
-m.main()
+
+game()
