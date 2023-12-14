@@ -42,6 +42,12 @@ def game():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    shoot = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    shoot = False
         
         
         #background logic
@@ -59,8 +65,9 @@ def game():
             bullet = s.Bullets(player.rect.centerx,player.rect.centery)
             bullet_group.add(bullet)
              
-        if pygame.key.get_pressed()[pygame.K_SPACE]:
-                shoot = True
+        #if pygame.key.get_pressed()[pygame.K_SPACE]:
+                #shoot = True
+        
                 
         
         screen.blit(bg,(bgx,0))
@@ -80,4 +87,4 @@ def game():
 
 
 
-game()
+#game()

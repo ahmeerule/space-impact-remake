@@ -26,6 +26,14 @@ class Player(pygame.sprite.Sprite):
             self.speedy = - 4
         if key_state[pygame.K_DOWN]:
             self.speedy = + 4 
+        if key_state[pygame.K_a]:  
+            self.speedx = -4
+        if key_state[pygame.K_d]:
+            self.speedx = + 4
+        if key_state[pygame.K_w]:
+            self.speedy = - 4
+        if key_state[pygame.K_s]:
+            self.speedy = + 4 
         self.rect.x += self.speedx
         self.rect.y += self.speedy      
         
@@ -38,13 +46,18 @@ class Player(pygame.sprite.Sprite):
 class Bullets(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self)
-        self.speed = 10
+        self.speed = 0.1
         self.image = pygame.image.load("assets/bullet.png").convert_alpha()
         self.w = self.image.get_width()
         self.h = self.image.get_height()
         self.resize = pygame.transform.scale(self.image,(self.w*0.2,self.h*0.2))
         self.rect = self.resize.get_rect()
         self.rect.center = (x,y)
+        self.cooldown = 0
+        self.shoot_delay = 500
         
     def update(self):
         self.rect.centerx += 10
+
+        # Move the bullet based on its speed
+        self.rect.x -= self.speed
