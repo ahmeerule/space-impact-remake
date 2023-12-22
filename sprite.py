@@ -1,8 +1,7 @@
 import sys, pygame
 from typing import Any
-import random
 
-collide = 0
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -16,7 +15,6 @@ class Player(pygame.sprite.Sprite):
     
 
     def update(self):
-        self.cooldown -= 1
         self.speedx = 0
         self.speedy = 0
         key_state = pygame.key.get_pressed()
@@ -37,10 +35,13 @@ class Player(pygame.sprite.Sprite):
         if key_state[pygame.K_s]:
             self.speedy = + 4 
         self.rect.x += self.speedx
-        self.rect.y += self.speedy      
+        self.rect.y += self.speedy    
+        if self.cooldown == 0:
+            self.cooldown = 20  
         
-    def create_bullet(self):
-        pass
+
+        
+        
 
         
 
@@ -61,3 +62,5 @@ class Bullets(pygame.sprite.Sprite):
         self.rect.centerx += 10
         if self.rect.x > 1200:
             self.kill()
+
+        

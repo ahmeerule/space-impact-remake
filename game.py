@@ -55,9 +55,13 @@ def game():
                     shoot = False
 
             if shoot:
-                bullet = s.Bullets(player.rect.centerx+17,player.rect.centery-15)
-                bullet_group.add(bullet)
-        
+                if cooldown ==0:
+                    bullet_group.add(s.Bullets(player.rect.centerx+17,player.rect.centery-15))
+                    cooldown = 5
+                else:
+                    cooldown -= 1
+                
+       
         #background logic
         bgx += 0.5
         second_bgx +=0.5
@@ -86,7 +90,6 @@ def game():
         enemy_sprite.update()
         all_sprite.draw(screen)
         all_sprite.update()
-        print(bullet_group)
         # constanly update gameboard 
        
 
