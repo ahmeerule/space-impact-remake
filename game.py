@@ -11,7 +11,7 @@ clock = pygame.time.Clock()
 #setting screen title
 pygame.display.set_caption("Space Impact Remake")
 
-#BACKGROUND
+
 def game():
     #BACKGROUND
     bgx = -1000
@@ -35,9 +35,9 @@ def game():
     shoot = False
     
     #bullet = s.Bullets(s.Player.rect.centerx,s.Player.rect.centery)
+    run = True
     
-    
-    while True:
+    while run:
         # for every event check that if user click on cross of the screen
         #then quit the game
         clock.tick(60)
@@ -45,23 +45,8 @@ def game():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 exit()
-
-                 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    shoot = True
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_SPACE:
-                    shoot = False
-
-            if shoot:
-                if cooldown ==0:
-                    bullet_group.add(s.Bullets(player.rect.centerx+45,player.rect.centery+2))
-                    cooldown = 5
-                else:
-                    cooldown -= 1
-                
-       
+        
+        
         #background logic
         bgx += 0.5
         second_bgx +=0.5
@@ -77,9 +62,8 @@ def game():
             bullet = s.Bullets(player.rect.centerx,player.rect.centery)
             bullet_group.add(bullet)
              
-        #if pygame.key.get_pressed()[pygame.K_SPACE]:
-                #shoot = True
-        
+        if pygame.key.get_pressed()[pygame.K_SPACE]:
+                shoot = True
                 
         
         screen.blit(bg,(bgx,0))
@@ -94,6 +78,7 @@ def game():
         print(bullet_group)
         # constanly update gameboard 
        
+
         pygame.display.update()
     
         
@@ -101,4 +86,3 @@ def game():
 
 
 
-game()

@@ -87,12 +87,9 @@ class Bullets(pygame.sprite.Sprite):
         self.resize = pygame.transform.scale(self.image,(5,5))
         self.w = self.image.get_width()
         self.h = self.image.get_height()
-        self.rect = self.image.get_rect()
+        self.resize = pygame.transform.scale(self.image,(self.w*0.2,self.h*0.2))
+        self.rect = self.resize.get_rect()
         self.rect.center = (x,y)
         
     def update(self):
         self.rect.centerx += 10
-        if self.rect.x > 1200:
-            self.kill()
-
-        

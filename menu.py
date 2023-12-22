@@ -10,8 +10,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 
 def main_menu():
     pygame.display.set_caption("Main Menu")
-    # Title
-    test_font = pygame.font.Font("freesansbold.ttf",70)
+    #Title
+    test_font = pygame.font.Font(None,100)
     text_surface = test_font.render("Space Impact Remake",False,"white")
 
     # Buttons
@@ -155,7 +155,7 @@ def gameover():
             second_bgx = 0
         screen.blit(bg,(bgx,0))
         screen.blit(second_bg,(second_bgx,0))
-        screen.blit(text_surface,(300,250))  
+        screen.blit(text_surface,(200,300))
         bbutton.update()
         
         pygame.display.update()
