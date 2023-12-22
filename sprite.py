@@ -48,9 +48,9 @@ class Bullets(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.speed = 0.1
         self.image = pygame.image.load("assets/bullet.png").convert_alpha()
+        self.resize = pygame.transform.scale(self.image,(5,5))
         self.w = self.image.get_width()
         self.h = self.image.get_height()
-        self.resize = pygame.transform.scale(self.image,(self.w*0.2,self.h*0.2))
         self.rect = self.resize.get_rect()
         self.rect.center = (x,y)
         self.cooldown = 0
@@ -58,6 +58,3 @@ class Bullets(pygame.sprite.Sprite):
         
     def update(self):
         self.rect.centerx += 10
-
-        # Move the bullet based on its speed
-        self.rect.x -= self.speed

@@ -87,4 +87,4 @@ def game():
 
 
 
-#game()
+game()
