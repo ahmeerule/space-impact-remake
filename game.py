@@ -45,7 +45,18 @@ def game():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 exit()
-        
+
+                 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    shoot = True
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    shoot = False
+
+            if shoot:
+                bullet = s.Bullets(player.rect.centerx+17,player.rect.centery-15)
+                bullet_group.add(bullet)
         
         #background logic
         bgx += 0.5

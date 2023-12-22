@@ -6,7 +6,6 @@ collide = 0
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.lives = 3
         self.image = pygame.image.load("assets/player1.png")
         self.resize =  pygame.transform.scale(self.image,(100,50))
         self.rect = self.resize.get_rect()
@@ -17,6 +16,7 @@ class Player(pygame.sprite.Sprite):
     
 
     def update(self):
+        self.cooldown -= 1
         self.speedx = 0
         self.speedy = 0
         key_state = pygame.key.get_pressed()
@@ -37,44 +37,10 @@ class Player(pygame.sprite.Sprite):
         if key_state[pygame.K_s]:
             self.speedy = + 4 
         self.rect.x += self.speedx
-        self.rect.y += self.speedy    
-        #player boundaries
-        if self.rect.x < 0:
-            self.rect.x = 0
-        if self.rect.x > 900:
-            self.rect.x = 900
-        if self.rect.y > 550:
-            self.rect.y = 550
-        if self.rect.y < 0:
-            self.rect.y = 0
-        #death condition
-        if self.lives == 0:
-            self.kill()
-            
-
+        self.rect.y += self.speedy      
         
-    def reset(self):
-        self.lives -= 1
-        self.rect.centerx = 75
-        self.rect.centery = 300
-
-
-class Enemy(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.alive = True
-        self.cooldown = 0
-        self.image = pygame.image.load("assets/enemy.png")
-        #self.resize =  pygame.transform.scale(self.image,(1,1))
-        self.rect = self.image.get_rect()
-        self.rect.centerx = 1100
-        self.rect.centery = random.randint(50,550)
-      
-    def update(self):
-        self.rect.x -= 1
-        if self.rect.x < 0:
-            self.kill()
-        
+    def create_bullet(self):
+        pass
 
         
 
@@ -93,3 +59,5 @@ class Bullets(pygame.sprite.Sprite):
         
     def update(self):
         self.rect.centerx += 10
+        if self.rect.x > 1200:
+            self.kill()
