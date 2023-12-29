@@ -1,7 +1,7 @@
 import pygame
 import button as b
-import sprite as s
-from config import SCREEN_WIDTH , SCREEN_HEIGHT
+import classes.sprite as s
+from config import SCREEN_WIDTH , SCREEN_HEIGHT , BACKGROUND_IMAGE_FILE_PATH
 import time
 pygame.init()
 
@@ -19,6 +19,37 @@ second_background = Background(
     screen_width = SCREEN_WIDTH,
     screen_height = SCREEN_HEIGHT,
     screen_initial_x = -SCREEN_WIDTH
+)
+
+# BUTTONS
+back_button = b.Button(
+    image_file_path = "assets/back.png", 
+    image_x_pos=30, 
+    image_y_pos=30,
+    scale_height=50,
+    scale_width=50
+)
+
+play_button = b.Button(
+    image_file_path = 'assets/play.png',
+    image_x_pos = SCREEN_WIDTH/2,
+    image_y_pos = 400,
+    scale_height = 100,
+    scale_width = 200
+)
+
+credit_button = b.Button(
+    image_file_path = 'assets/chest.png',
+    image_x_pos = 200,
+    image_y_pos = 400
+)
+
+quit_button = b.Button(
+    image_file_path = 'assets/quit.png',
+    image_x_pos = SCREEN_WIDTH/2,
+    image_y_pos = 520,
+    scale_height = 100,
+    scale_width = 200
 )
 
 
@@ -42,8 +73,6 @@ def main_menu():
     pbutton = b.Button(play_button,SCREEN_WIDTH/2 , 400)
     qbutton = b.Button(quit_button,SCREEN_WIDTH/2 , 520)
 
-    # BACKGROUND|
-    bgx = -SCREEN_WIDTH
     
     
     
@@ -55,11 +84,11 @@ def main_menu():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 exit()
-            if pbutton.checkforinput():
+            if play_button.checkforinput():
                 game()
-            if qbutton.checkforinput():
+            if quit_button.checkforinput():
                 pygame.QUIT()
-            if cbutton.checkforinput():
+            if credit_button.checkforinput():
                 credit()
 
         
@@ -67,10 +96,11 @@ def main_menu():
         second_background.update(screen)        
         screen.blit(text_surface,(150,50))
 
-        cbutton.update(screen)
-        qbutton.update(screen)      
-        pbutton.update(screen)
+        credit_button.update(screen)
+        quit_button.update(screen)      
+        play_button.update(screen)
         pygame.display.update()
+
 
 def credit():
     pygame.display.set_caption("Credits")
@@ -79,11 +109,6 @@ def credit():
     text_surface = test_font.render("Made by:Irwin lai",False,"white")
     asset_surface = test_font.render("Assets by:Zai ndn",False,"white")
      
-    back_button = pygame.image.load("assets/back.png")
-    back_button = pygame.transform.scale(back_button,(100 ,100))
-
-    bbutton = b.Button(back_button,70,50)
-
   
     while True:
 
@@ -91,7 +116,7 @@ def credit():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 exit()
-            if bbutton.checkforinput():
+            if back_button.checkforinput():
                 main_menu()
             
 
@@ -100,7 +125,7 @@ def credit():
         second_background.update(screen)     
         screen.blit(text_surface,(200,250))
         screen.blit(asset_surface,(190,350))  
-        bbutton.update(screen)
+        back_button.update(screen)
         
         pygame.display.update()
 
@@ -109,27 +134,21 @@ def gameover():
     
     test_font = pygame.font.Font(None,100)
     text_surface = test_font.render("Game Over",False,"white")
-     
-    back_button = pygame.image.load("assets/back.png")
-    back_button = pygame.transform.scale(back_button,(100 ,100))
 
-    bbutton = b.Button(back_button,70,50)
-
-    
     while True:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 exit()
-            if bbutton.checkforinput():
+            if back_button.checkforinput():
                 main_menu()
             
         
         background.update(screen)
         second_background.update(screen)     
         screen.blit(text_surface,(300,250))  
-        bbutton.update(screen)
+        back_button.update(screen)
         
         pygame.display.update()
 
