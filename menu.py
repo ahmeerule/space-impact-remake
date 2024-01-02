@@ -1,8 +1,9 @@
 import pygame
-import button as b
+import classes.button as b
 import classes.sprite as s
+from classes.background import Background
 from config import SCREEN_WIDTH , SCREEN_HEIGHT , BACKGROUND_IMAGE_FILE_PATH , BACK_BUTTON_IMAGE_FILE_PATH
-import time
+import classes.text as t
 pygame.init()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
