@@ -21,7 +21,7 @@ def main_menu():
     quit_button = pygame.image.load('assets/quit.png')
     quit_button = pygame.transform.scale(quit_button,(250 ,100))
 
-    cbutton = b.Button(credit_button,200,400)
+    cbutton = b.Button(credit_button,200,400) 
     pbutton = b.Button(play_button,1000/2 , 400)
     qbutton = b.Button(quit_button,1000/2 , 520)
 
