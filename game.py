@@ -22,11 +22,14 @@ def game():
     second_bg = pygame.image.load("assets/bgg.jpeg").convert_alpha()
     second_bg = pygame.transform.scale(bg,(1000,600))
 
-    #player sprite
+    #sprites
     all_sprite = pygame.sprite.Group()
     bullet_group = pygame.sprite.Group()
+    enemy_sprite = pygame.sprite.Group()
     player = s.Player()
     all_sprite.add(player)
+    enemy = s.Enemy()
+    enemy_sprite.add(enemy)
     #controls
     cooldown = 0
     shoot = False
@@ -52,9 +55,13 @@ def game():
                     shoot = False
 
             if shoot:
-                bullet = s.Bullets(player.rect.centerx+17,player.rect.centery-15)
-                bullet_group.add(bullet)
-        
+                if cooldown ==0:
+                    bullet_group.add(s.Bullets(player.rect.centerx+45,player.rect.centery+2))
+                    cooldown = 5
+                else:
+                    cooldown -= 1
+                
+       
         #background logic
         bgx += 0.5
         second_bgx +=0.5
@@ -80,9 +87,11 @@ def game():
         
         bullet_group.draw(screen)
         bullet_group.update()
+        enemy_sprite.draw(screen)
+        enemy_sprite.update()
         all_sprite.draw(screen)
         all_sprite.update()
-        
+        print(bullet_group)
         # constanly update gameboard 
        
         pygame.display.update()
