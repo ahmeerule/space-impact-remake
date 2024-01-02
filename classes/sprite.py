@@ -1,20 +1,11 @@
-<<<<<<< HEAD
-import sys, pygame
-from typing import Any
-=======
 import pygame
->>>>>>> 7ac14b8dc593bb71574a71ee465b681872591bf9
 import random
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-<<<<<<< HEAD
-        self.lives = 3
-=======
         self.lives = 1
->>>>>>> 7ac14b8dc593bb71574a71ee465b681872591bf9
         self.image = pygame.image.load("assets/player1.png")
         self.resize =  pygame.transform.scale(self.image,(100,50))
         self.rect = self.resize.get_rect()
