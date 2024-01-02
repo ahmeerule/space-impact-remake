@@ -164,13 +164,13 @@ def game():
     spawn_timer = 100
     total_enemy = 1
 
-    t0 = time.time()
-    timeout_seconds = 30    
+    #t0 = time.time()
+    #timeout_seconds = 30    
     while player.alive():
         # for every event check that if user click on cross of the screen
         # then quit the game
-        if time.time()-t0 > timeout_seconds:
-            break
+        #if time.time()-t0 > timeout_seconds:
+        #    break
         clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
