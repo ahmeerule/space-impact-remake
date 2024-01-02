@@ -5,6 +5,9 @@ import random
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
+
+        self.lives = 3
+
         self.lives = 1
         self.image = pygame.image.load("assets/player1.png")
         self.resize =  pygame.transform.scale(self.image,(100,50))
@@ -26,6 +29,14 @@ class Player(pygame.sprite.Sprite):
         if key_state[pygame.K_UP]:
             self.speedy = - 2
         if key_state[pygame.K_DOWN]:
+            self.speedy = + 2 
+        if key_state[pygame.K_a]:
+            self.speedx = - 2
+        if key_state[pygame.K_d]:
+            self.speedx = + 2
+        if key_state[pygame.K_w]:
+            self.speedy = - 2
+        if key_state[pygame.K_s]:
             self.speedy = + 2 
         self.rect.x += self.speedx
         self.rect.y += self.speedy    
