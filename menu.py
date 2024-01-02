@@ -55,28 +55,11 @@ quit_button = b.Button(
 
 def main_menu():
     pygame.display.set_caption("Main Menu")
-    #Title
+    # Title
     test_font = pygame.font.Font("freesansbold.ttf",70)
     text_surface = test_font.render("Space Impact Remake",False,"white")
 
-    # Buttons
-    credit_button = pygame.image.load("assets/chest.png")
-    credit_button = pygame.transform.scale(credit_button,(100 ,100))
-
-    play_button = pygame.image.load('assets/play.png')
-    play_button = pygame.transform.scale(play_button,(250 ,100))
-
-    quit_button = pygame.image.load('assets/quit.png')
-    quit_button = pygame.transform.scale(quit_button,(250 ,100))
-   
-    cbutton = b.Button(credit_button,200,400)
-    pbutton = b.Button(play_button,SCREEN_WIDTH/2 , 400)
-    qbutton = b.Button(quit_button,SCREEN_WIDTH/2 , 520)
-
-    
-    
-    
-
+  
     # MENU LOOP
     while True:
 
@@ -94,7 +77,7 @@ def main_menu():
         
         background.update(screen)
         second_background.update(screen)        
-        screen.blit(text_surface,(150,50))
+        title_text.update(screen,150,100)
 
         credit_button.update(screen)
         quit_button.update(screen)      
@@ -105,9 +88,8 @@ def main_menu():
 def credit():
     pygame.display.set_caption("Credits")
     
-    test_font = pygame.font.Font(None,100)
-    text_surface = test_font.render("Made by:Irwin lai",False,"white")
-    asset_surface = test_font.render("Assets by:Zai ndn",False,"white")
+    creator_text = t.text("Made by:Irwin lai","white")
+    asset_text = t.text("Assets by:Zai ndn","white")
      
   
     while True:
@@ -123,17 +105,16 @@ def credit():
         
         background.update(screen)
         second_background.update(screen)     
-        screen.blit(text_surface,(200,250))
-        screen.blit(asset_surface,(190,350))  
+        creator_text.update(screen,200,250)
+        asset_text.update(screen,190,350)  
         back_button.update(screen)
         
         pygame.display.update()
 
 def gameover():
-    pygame.display.set_caption("Credits")
+    pygame.display.set_caption("Gamer over")
     
-    test_font = pygame.font.Font(None,100)
-    text_surface = test_font.render("Game Over",False,"white")
+    game_over_text = t.text("Game Over", "white")
 
     while True:
 
@@ -147,7 +128,7 @@ def gameover():
         
         background.update(screen)
         second_background.update(screen)     
-        screen.blit(text_surface,(300,250))  
+        game_over_text.update(screen,300,250)  
         back_button.update(screen)
         
         pygame.display.update()
