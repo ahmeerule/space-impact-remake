@@ -2,6 +2,7 @@ import pygame
 import classes.button as b
 import classes.sprite as s
 import classes.text as t
+import time
 from config import SCREEN_WIDTH , SCREEN_HEIGHT , BACKGROUND_IMAGE_FILE_PATH , BACK_BUTTON_IMAGE_FILE_PATH
 from classes.background import Background
 pygame.init()
